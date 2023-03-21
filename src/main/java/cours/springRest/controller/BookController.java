@@ -25,11 +25,11 @@ public class BookController {
     public Book createNewBook(@RequestBody Book newbook){
         return bookRepository.save(newbook);
     }
-    //@PostMapping("/books/search")
-    //public List<Book> search(@RequestBody Map<String, String> body){
-        //String searchTerm = body.get("text");
-        //return bookRepository.findInTitleOrDescription(searchTerm, searchTerm);
-    //}
+    @PostMapping("/books/search")
+    public List<Book> search(@RequestBody Map<String, String> body){
+        String searchTerm = body.get("text");
+        return bookRepository.findByTitleContainingOrDescriptionContaining(searchTerm, searchTerm);
+    }
     @PutMapping("/books/{id}")
     public Book update(@PathVariable int id,@RequestBody Book book){
         Book bookToUpdate = bookRepository.findById(id).get();

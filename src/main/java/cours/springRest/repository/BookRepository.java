@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface BookRepository extends JpaRepository<Book, Integer> {
-    //List<Book> findInTitleOrDescription(String text, String textAgain);
+    List<Book> findByTitleContainingOrDescriptionContaining(String text, String textAgain);
 }
